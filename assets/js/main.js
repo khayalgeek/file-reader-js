@@ -21,9 +21,9 @@ class File {
 
 class FileReader {
     constructor(fileImage, inputElement, fileNameElement, fileTypeElement, fileSizeElement) {
-        this.fileImage = fileImage
+        this.fileImage = fileImage;
         this.inputElement = inputElement;
-        this.fileNameElement = fileNameElement;
+        this.fileNameElement = fileNameElement; 
         this.fileTypeElement = fileTypeElement;
         this.fileSizeElement = fileSizeElement;
 
@@ -37,22 +37,16 @@ class FileReader {
     handleFileChange(event) {
         const fileList = event.target.files;
         const file = new File(fileList[0].name, fileList[0].type, fileList[0].size);
-        
-        if (this.isImage(fileList[0].type)) {
-            this.fileImage.src = URL.createObjectURL(fileList[0]);
-        } else {
-            this.fileImage.src = 'assets/img/not-image.jpg';
-        }
+
+        this.fileImage.src = this.isImage(fileList[0].type) ?
+            URL.createObjectURL(fileList[0]) : 'assets/img/not-image.jpg';
 
         this.fileNameElement.innerText = file.name;
         this.fileTypeElement.innerText = file.type;
 
         const fileSizeInBytes = file.getSizeInBytes();
-        if (fileSizeInBytes >= 1024 * 1024) {
-            this.fileSizeElement.innerText = `${file.getSizeInMB()} MB`;
-        } else {
-            this.fileSizeElement.innerText = `${file.getSizeInKB()} KB`;
-        }
+        this.fileSizeElement.innerText = fileSizeInBytes >= 1024 * 1024 ?
+        `${file.getSizeInMB()} MB` : `${file.getSizeInKB()} KB`
     }
 }
 
