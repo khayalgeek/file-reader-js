@@ -17,7 +17,7 @@ body {
     align-items: center;
     flex-direction: column;
     width: 450px;
-    height: 350px;
+    height: fit-content;
     border-radius: 5px;
     padding: 15px;
     background-color: #f4f4f4;
@@ -44,6 +44,13 @@ label[for="file-reader"]{
     margin-top: 1rem;
 }
 
+.file-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .file-info span{
     margin-bottom: .5rem;
     font-size: 15px;
@@ -53,4 +60,11 @@ label[for="file-reader"]{
     color: gray;
     font-size: 15px;
     margin-left: 5px;
+}
+
+#file-image{
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+    margin: 1rem 0px;
 }
